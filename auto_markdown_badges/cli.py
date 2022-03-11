@@ -63,12 +63,12 @@ def generate(  # dead: disable
             line,
         ):
             if title and link and (icon := icons.get(title)):
-                # Replace link by badge with link
+                # Replace link with badge incl. link
                 color = icon.__dict__["hex"]
                 badge = f"[![{title}](https://img.shields.io/badge/{title}-{color}?style=for-the-badge&logo={title}&logoColor=white)]({link})"
                 line = line.replace(f"[{title}]({link})", badge, 1)
             elif word and (icon := icons.get(word)):
-                # Replace word by badge
+                # Replace word with badge
                 color = icon.__dict__["hex"]
                 badge = f"![{word}](https://img.shields.io/badge/{word}-{color}?style=for-the-badge&logo={word}&logoColor=white)"
                 line = line.replace(word, badge, 1)

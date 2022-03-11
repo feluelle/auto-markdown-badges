@@ -39,9 +39,9 @@ _Examples of generated badges can be found in the [examples](examples) directory
 
 ## 🤔 How it Works
 
-1. It reads the given file, line by line, word by word
-1. It tries to find [simple-icons](https://github.com/simple-icons/simple-icons) for every word
-1. It replaces the word by badge either inplace or writes the output to console
+1. It reads the given file, line by line
+2. It tries to find [simple-icons](https://github.com/simple-icons/simple-icons) for every word
+3. It replaces the word with a badge
 
 ## ❤️ Contributing
 
