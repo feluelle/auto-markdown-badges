@@ -24,14 +24,15 @@ pip install auto-markdown-badges
 Then just call it like this:
 
 ```console
-Usage: auto-markdown-badges generate [OPTIONS] FILE
+Usage: auto-markdown-badges generate [OPTIONS] INPUT_FILE
 
   Generates badges from a file.
 
 Options:
-  FILE        The file to use for generation of badges.  [required]
-  --inplace   Writes back to file instead of to stdout.
-  -h, --help  Show this message and exit.
+  INPUT_FILE              The file to use for generation of badges.
+                          [required]
+  -o, --output-file FILE  The file to output to.
+  -h, --help              Show this message and exit.
 ```
 
 _Examples of generated badges can be found in the [examples](examples) directory._
