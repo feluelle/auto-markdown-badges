@@ -20,7 +20,39 @@ def test_generate():
             "generate",
             "examples/example.md",
             "--output-file",
-            "examples/example_badges.md",
+            "generated/example_badges.md",
+        ],
+    )
+    assert result.exit_code == 0
+
+
+def test_generate_with_placement_header():
+    """Test end-to-end with header placement"""
+    result = runner.invoke(
+        cli.app,
+        [
+            "generate",
+            "examples/example.md",
+            "--output-file",
+            "generated/example_badges.md",
+            "--placement",
+            "header",
+        ],
+    )
+    assert result.exit_code == 0
+
+
+def test_generate_with_placement_footer():
+    """Test end-to-end with footer placement"""
+    result = runner.invoke(
+        cli.app,
+        [
+            "generate",
+            "examples/example.md",
+            "--output-file",
+            "generated/example_badges.md",
+            "--placement",
+            "footer",
         ],
     )
     assert result.exit_code == 0
