@@ -1,13 +1,13 @@
 """This module provides the auto-markdown-badges CLI."""
-import re
+from enum import Enum
 from pathlib import Path
 from typing import Optional
 
-from simpleicons.all import icons
 from typer import Argument, Exit, Option
 
 from auto_markdown_badges import __app_name__, __version__
 from auto_markdown_badges.custom_typer import CustomTyper
+from auto_markdown_badges.utils import finditer
 
 app = CustomTyper()
 
@@ -32,6 +32,14 @@ def main(
     return
 
 
+class Placement(str, Enum):
+    """Indicator for badge placement."""
+
+    HEADER = "header"
+    INPLACE = "inplace"
+    FOOTER = "footer"
+
+
 @app.command(
     help="Generates badges from a file.",
 )
@@ -50,33 +58,32 @@ def generate(  # dead: disable
         exists=False,
         dir_okay=False,
     ),
+    placement: Placement = Option(
+        Placement.INPLACE,
+        "-p",
+        "--placement",
+        case_sensitive=False,
+        help="Specify where to place the badge.",
+    ),
 ):
-    def process(line: str) -> str:
-        """
-        Replace links or words by badges.
-
-        :param line: The line to process.
-        """
-        for title, link, word in re.findall(
-            # Markdown Links or just Words
-            r"\[([^\[\]]*)\]\((.*?)\)|(\w+)",
-            line,
-        ):
-            if title and link and (icon := icons.get(title)):
-                # Replace link with badge incl. link
-                color = icon.__dict__["hex"]
-                badge = f"[![{title}](https://img.shields.io/badge/{title}-{color}?style=for-the-badge&logo={title}&logoColor=white)]({link})"
-                line = line.replace(f"[{title}]({link})", badge, 1)
-            elif word and (icon := icons.get(word)):
-                # Replace word with badge
-                color = icon.__dict__["hex"]
-                badge = f"![{word}](https://img.shields.io/badge/{word}-{color}?style=for-the-badge&logo={word}&logoColor=white)"
-                line = line.replace(word, badge, 1)
-        return line
-
-    lines = []
     with open(input_file, "r") as file:
-        for line in file:
-            lines.append(process(line))
+        data = file.read()
+
+    if placement is Placement.INPLACE:
+        new_data = data
+    else:
+        badges = []
+
+    for string, badge in finditer(data):
+        if placement is Placement.INPLACE:
+            new_data = new_data.replace(string, badge, 1)
+        else:
+            badges.append(badge)
+
+    if placement is Placement.HEADER:
+        new_data = f"{' '.join(badges)}\n\n{data}"
+    elif placement is Placement.FOOTER:
+        new_data = f"{data}\n{' '.join(badges)}\n"
+
     with open(output_file or input_file, "w") as file:
-        file.writelines(lines)
+        file.write(new_data)
