@@ -29,10 +29,13 @@ Usage: auto-markdown-badges generate [OPTIONS] INPUT_FILE
   Generates badges from a file.
 
 Options:
-  INPUT_FILE              The file to use for generation of badges.
-                          [required]
-  -o, --output-file FILE  The file to output to.
-  -h, --help              Show this message and exit.
+  INPUT_FILE                      The file to use for generation of badges.
+                                  [required]
+  -o, --output-file FILE          The file to output to.
+  -p, --placement [header|inplace|footer]
+                                  Specify where to place the badge.  [default:
+                                  Placement.INPLACE]
+  -h, --help                      Show this message and exit.
 ```
 
 _Examples of generated badges can be found in the [examples](examples) directory._
