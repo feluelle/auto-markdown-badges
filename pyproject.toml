@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "auto-markdown-badges"
-version = "0.1.0"
+version = "0.2.0"
 description = "Auto-generated markdown badges."
 authors = ["Felix Uellendall <feluelle@pm.me>"]
 license = "Apache-2.0"
