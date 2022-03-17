@@ -78,7 +78,7 @@ def generate(  # dead: disable
         if placement is Placement.HEADER:
             new_data = f"{badges}\n\n{data}"
         elif placement is Placement.FOOTER:
-            new_data = f"{data}\n{badges}\n"
+            new_data = f"{data}\n\n{badges}"
 
     with open(output_file or input_file, "w") as file:
         file.write(new_data)
