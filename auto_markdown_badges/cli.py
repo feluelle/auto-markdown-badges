@@ -71,19 +71,14 @@ def generate(  # dead: disable
 
     if placement is Placement.INPLACE:
         new_data = data
-    else:
-        badges = []
-
-    for string, badge in finditer(data):
-        if placement is Placement.INPLACE:
+        for string, badge in finditer(data):
             new_data = new_data.replace(string, badge, 1)
-        else:
-            badges.append(badge)
-
-    if placement is Placement.HEADER:
-        new_data = f"{' '.join(badges)}\n\n{data}"
-    elif placement is Placement.FOOTER:
-        new_data = f"{data}\n{' '.join(badges)}\n"
+    else:
+        badges = " ".join(badge for _, badge in finditer(data))
+        if placement is Placement.HEADER:
+            new_data = f"{badges}\n\n{data}"
+        elif placement is Placement.FOOTER:
+            new_data = f"{data}\n{badges}\n"
 
     with open(output_file or input_file, "w") as file:
         file.write(new_data)
