@@ -66,7 +66,7 @@ def generate(  # dead: disable
         help="Specify where to place the badge.",
     ),
 ):
-    with open(input_file, "r") as file:
+    with open(input_file) as file:
         data = file.read()
 
     if placement is Placement.INPLACE:
