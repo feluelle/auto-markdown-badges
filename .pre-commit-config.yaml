@@ -23,7 +23,7 @@ repos:
           - types-PyYAML
           - types-toml
   - repo: https://github.com/pre-commit/pygrep-hooks
-    rev: v1.9.0
+    rev: v1.10.0
     hooks:
       - id: python-check-blanket-noqa
       - id: python-check-blanket-type-ignore
@@ -73,6 +73,6 @@ repos:
       - id: isort
         args: ["--profile", "black"]
   - repo: https://github.com/crate-ci/typos
-    rev: v1.13.6
+    rev: typos-dict-v0.9.14
     hooks:
       - id: typos
