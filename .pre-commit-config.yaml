@@ -48,7 +48,7 @@ repos:
     hooks:
       - id: dead
   - repo: https://github.com/psf/black
-    rev: 23.11.0
+    rev: 23.12.0
     hooks:
       - id: black
   - repo: https://github.com/PyCQA/flake8
@@ -68,11 +68,11 @@ repos:
         args: ["--convention", "pep257", "--add-ignore", "D100,D107"]
         exclude: "auto_markdown_badges/cli.py|auto_markdown_badges/__main__.py|tests/"
   - repo: https://github.com/pycqa/isort
-    rev: 5.13.0
+    rev: 5.13.2
     hooks:
       - id: isort
         args: ["--profile", "black"]
   - repo: https://github.com/crate-ci/typos
-    rev: v1.16.24
+    rev: v1.16.25
     hooks:
       - id: typos
