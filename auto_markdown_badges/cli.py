@@ -1,4 +1,5 @@
 """This module provides the auto-markdown-badges CLI."""
+
 from enum import Enum
 from pathlib import Path
 from typing import Optional
