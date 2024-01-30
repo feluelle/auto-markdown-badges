@@ -1,10 +1,10 @@
 import re
-from typing import Generator, Tuple
+from collections.abc import Generator
 
 from simpleicons.all import icons
 
 
-def finditer(data: str) -> Generator[Tuple[str, str], None, None]:
+def finditer(data: str) -> Generator[tuple[str, str], None, None]:
     """
     Generate replacements/badges from words.
 

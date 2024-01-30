@@ -27,19 +27,23 @@ class CustomTyper(typer.Typer):
         self,
         *args,
         cls=CustomHelpColorsGroup,
-        context_settings={"help_option_names": ["-h", "--help"]},
+        context_settings=None,
         **kwargs,
     ) -> None:
+        if context_settings is None:
+            context_settings = {"help_option_names": ["-h", "--help"]}
         super().__init__(*args, cls=cls, context_settings=context_settings, **kwargs)
 
     def command(
         self,
         *args,
         cls=CustomHelpColorsCommand,
-        context_settings={"help_option_names": ["-h", "--help"]},
+        context_settings=None,
         **kwargs,
     ):
         """Overwrite help to use colors."""
+        if context_settings is None:
+            context_settings = {"help_option_names": ["-h", "--help"]}
         return super().command(
             *args,
             cls=cls,
