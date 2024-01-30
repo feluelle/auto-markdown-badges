@@ -1,4 +1,5 @@
 """Top-level package for auto-markdown-badges."""
+
 from importlib.metadata import version
 from os import getcwd
 from os.path import dirname, join, realpath
